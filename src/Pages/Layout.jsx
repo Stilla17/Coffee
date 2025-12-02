@@ -5,10 +5,12 @@ import { Outlet } from 'react-router'
 
 const Layout = () => {
     return (
-        <div>
-            <Nav />
-            <Outlet />
+        <div className='flex w-full'>
             <SideBar />
+            <div className='w-full bg-[#F1F3F4]'>
+                <Nav />
+                <Outlet />
+            </div>
         </div>
     )
 }
