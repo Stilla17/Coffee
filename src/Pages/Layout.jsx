@@ -2,16 +2,20 @@ import React from 'react'
 import Nav from '../Components/Nav/Nav'
 import SideBar from '../Components/SideBar/SideBar'
 import { Outlet } from 'react-router'
+import Basket from '../Components/Basket/Basket'
 
 const Layout = () => {
     return (
-        <div className='flex w-full'>
-            <SideBar />
-            <div className='w-full bg-[#F1F3F4]'>
-                <Nav />
-                <Outlet />
+        <>
+            <div className='flex w-full'>
+                <SideBar />
+                <div className='w-full bg-[#F1F3F4]'>
+                    <Nav />
+                    <Outlet />
+                </div>
             </div>
-        </div>
+            <Basket />
+        </>
     )
 }
 
