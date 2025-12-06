@@ -42,30 +42,48 @@ const Home = () => {
 
   const counter = useSelector((state) => state.counterProduct.count);
   const dispatch = useDispatch();
+  const searchData = useSelector((state) => state.searchFilter.searchQuery.toLowerCase());
+
+  const filteredProducts = coffeeProducts.filter(product =>
+    product.productName.toLowerCase().includes(searchData) ||
+    product.description.toLowerCase().includes(searchData)
+  );
 
   return (
     <div className='px-8 pt-6'>
       <h3>Кофе</h3>
-      <p className="text-gray-500">4 товаров</p>
+      <p className="text-gray-500">{coffeeProducts.length} товаров</p>
 
       <div className="mt-4 flex gap-4 flex-wrap mb-30">
-        {
-          coffeeProducts.map((product, index) => (
-            <Card key={index}
+        {filteredProducts.map((product, index) => {
+          const key = `coffee-${product.id}`;
+
+          return (
+            <Card
+              key={index}
               img={product.img}
               description={product.description}
               productName={product.productName}
-              price={product.price} >
+              price={product.price}
+            >
               <div className='flex gap-4 items-center text-[18px]'>
-                <button onClick={() => dispatch(decrement(product.id))} className='w-[30px] h-[30px] rounded-full border border-green-600'>-</button>
-                <span>{counter[product.id] || 0}</span>
-                <button onClick={() => dispatch(increment(product))} className='w-[30px] h-[30px] bg-green-600 text-white rounded-full'>+</button>
+                <button
+                  onClick={() => dispatch(decrement({ ...product, category: "coffee" }))}
+                  className='w-[30px] h-[30px] rounded-full border border-green-600'
+                >-</button>
+
+                <span>{counter[key] || 0}</span>
+
+                <button
+                  onClick={() => dispatch(increment({ ...product, category: "coffee" }))}
+                  className='w-[30px] h-[30px] bg-green-600 text-white rounded-full'
+                >+</button>
               </div>
             </Card>
-          ))
-        }
+          );
+        })}
       </div>
-    </div>
+    </div >
   )
 }
 

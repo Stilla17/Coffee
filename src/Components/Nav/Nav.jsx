@@ -1,7 +1,15 @@
 import { Search } from 'lucide-react'
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { setSearchQuery } from '../../store/features/filterSlice';
 
 const Nav = () => {
+
+  const dispatch = useDispatch();
+  const handleSearch = (e) => {
+    dispatch(setSearchQuery(e.target.value));
+  }
+
   return (
     <nav className="px-6 py-3 bg-white shadow-md flex justify-end gap-18 items-center">
 
@@ -12,6 +20,7 @@ const Nav = () => {
           placeholder="Mahsulot qidirish..."
           className="w-[650px] pl-12 pr-4 py-2 bg-gray-100 rounded-xl text-gray-700 
                focus:outline-none focus:ring-2 focus:ring-green-500 focus:shadow-md"
+          onChange={handleSearch}
         />
       </div>
 

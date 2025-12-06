@@ -6,7 +6,6 @@ import { removeItem } from '../../store/features/counterProductSlice';
 const Basket = () => {
 
     const cart = useSelector((state) => state.counterProduct.data);
-    const open = useSelector((state) => state.counterProduct.isOpen);
     const dispatch = useDispatch();
 
     const totalCount = cart.reduce((sum, item) => sum + parseInt(item.count), 0)
@@ -30,8 +29,6 @@ const Basket = () => {
                                 </div>)
                     }
 
-
-
                 </div>
                 {
                     cart.length === 0 ? <p className='text-gray-500 mt-2'>Savat bo'sh</p> :
@@ -47,7 +44,7 @@ const Basket = () => {
                                                     <p className='text-gray-500 text-[12px]'>{item.count} x {item.originalPrice} so'm</p>
                                                 </div>
                                             </div>
-                                            <button onClick={() => dispatch(removeItem(item.id))} className='hover:bg-red-100 p-1 rounded-md hover:text-red-400'><X size={18} /></button>
+                                            <button onClick={() => dispatch(removeItem({ id: item.id, category: item.category }))} className='hover:bg-red-100 p-1 rounded-md hover:text-red-400'><X size={18} /></button>
                                         </div>
                                     ))
                                 }
