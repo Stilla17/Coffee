@@ -3,7 +3,7 @@ import React from 'react'
 const Card = ({ img, productName, description, price, children }) => {
     return (
         <div className='max-w-[350px] rounded-md bg-white border border-gray-300 overflow-hidden
-        hover:ring-2 hover:ring-green-600 hover:shadow-md transition-all duration-200 group'>
+        hover:ring-2 hover:ring-green-600 hover:shadow-md transition-all duration-200 group max-sm:max-w-full'>
             <div className="w-full h-[260px] overflow-hidden rounded-t-md">
                 <img
                     src={img}

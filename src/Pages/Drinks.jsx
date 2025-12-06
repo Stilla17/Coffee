@@ -46,7 +46,7 @@ const Drinks = () => {
       <h3>Напитки</h3>
       <p className="text-gray-500">{drinks.length} товаров</p>
 
-      <div className="mt-4 flex gap-4 flex-wrap mb-30">
+      <div className="mt-4 flex gap-4 mb-30  max-md:grid max-md:grid-cols-2 max-sm:grid-cols-1 ">
         {filteredProducts.map((product, index) => {
           const key = `drinks-${product.id}`;
 

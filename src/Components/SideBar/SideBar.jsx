@@ -19,7 +19,7 @@ const SideBar = () => {
     const activeId = menu.find(item => item.to === currentPath)?.id || active
 
     return (
-        <div className='bg-[#a5d6a7] w-[20%] pl-10 pr-6 py-8 h-screen sticky top-0'>
+        <div className='bg-[#a5d6a7] w-[300px] pl-10 pr-6 py-8 h-screen sticky top-0 max-md:hidden'>
             <h1 className='mb-8'>Kategoriyalar</h1>
             <ul className='text-[18px]'>
                 {menu.map(item => (
