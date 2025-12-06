@@ -25,13 +25,21 @@ const Pechenye = () => {
   const counter = useSelector((state) => state.counterProduct.count);
   const dispatch = useDispatch();
 
+  const searchData = useSelector((state) => state.searchFilter.searchQuery.toLowerCase());
+
+  const filteredProducts = cookie.filter(product =>
+    product.productName.toLowerCase().includes(searchData) ||
+    product.description.toLowerCase().includes(searchData)
+  );
+
+
   return (
     <div className='px-8 pt-6'>
       <h3>Печенье</h3>
       <p className="text-gray-500">{cookie.length} товаров</p>
 
       <div className="mt-4 flex gap-4 flex-wrap mb-30">
-        {cookie.map((product, index) => {
+        {filteredProducts.map((product, index) => {
           const key = `cookie-${product.id}`;
 
           return (
