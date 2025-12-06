@@ -2,6 +2,7 @@ import { ShoppingBasket, X } from 'lucide-react'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeItem } from '../../store/features/counterProductSlice';
+import { toast } from 'react-toastify';
 
 const Basket = () => {
 
@@ -13,6 +14,21 @@ const Basket = () => {
     const totalPrice = cart.reduce((sum, item) => sum + parseInt(item.total), 0)
 
     const isEmpty = cart.length === 0;
+
+    const handleRemoveItem = (id, category) => {
+        dispatch(removeItem({ id, category }));
+        console.log(id, category);
+
+        toast.success("Mahsulot savatdan o'chirildi!", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "light",
+        })
+    }
 
     return (
         <div className='fixed bottom-0 left-0 bg-[#e0e0e0] w-full py-4 px-8 flex justify-between items-center'>
@@ -44,7 +60,7 @@ const Basket = () => {
                                                     <p className='text-gray-500 text-[12px]'>{item.count} x {item.originalPrice} so'm</p>
                                                 </div>
                                             </div>
-                                            <button onClick={() => dispatch(removeItem({ id: item.id, category: item.category }))} className='hover:bg-red-100 p-1 rounded-md hover:text-red-400'><X size={18} /></button>
+                                            <button onClick={() => handleRemoveItem(item.id, item.category)} className='hover:bg-red-100 p-1 rounded-md hover:text-red-400'><X size={18} /></button>
                                         </div>
                                     ))
                                 }
