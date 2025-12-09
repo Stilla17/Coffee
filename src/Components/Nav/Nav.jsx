@@ -2,6 +2,7 @@ import { Search } from 'lucide-react'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { setSearchQuery } from '../../store/features/filterSlice';
+import { Link } from 'react-router';
 
 const Nav = () => {
 
@@ -31,11 +32,13 @@ const Nav = () => {
           <p className="text-sm text-gray-500 -mt-1">Бариста</p>
         </div>
 
-        <img
-          src="https://i.pravatar.cc/100"
-          alt="User"
-          className="w-12 h-12 rounded-full border-2 border-green-400 object-cover"
-        />
+        <Link to="/login" className='w-12 h-12'>
+          <img
+            src="https://i.pravatar.cc/100"
+            alt="User"
+            className="rounded-full border-2 border-green-400 object-cover"
+          />
+        </Link>
       </div>
     </nav>
   )
